@@ -1,6 +1,7 @@
 // Import the 'express' module
 import express, { Request, Response } from 'express';
 import auteurRoutes from './routes/auteursRoutes';
+import livreRoutes from './routes/livresRoutes';
 
 
 // Create an Express application
@@ -22,6 +23,12 @@ app.get('/auteurs', auteurRoutes);
 app.get('/auteurs/:id', auteurRoutes);
 app.post('/auteurs', auteurRoutes);
 app.put('/auteurs/:id', auteurRoutes);
+
+// Books endpoints
+app.get('/livres', livreRoutes);
+app.get('/livres/:id', livreRoutes);
+app.post('/livres', livreRoutes);
+app.put('/livres/:id', livreRoutes);
 
 // Start the server and listen on the specified port
 app.listen(port, () => {
