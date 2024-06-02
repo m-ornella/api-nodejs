@@ -6,6 +6,8 @@ import auteurRoutes from './routes/auteursRoutes';
 // Create an Express application
 const app = express();
 
+app.use(express.json())
+
 // Set the port number for the server
 const port = 3000;
 
@@ -16,6 +18,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/auteurs', auteurRoutes);
+
+app.post('/auteurs', auteurRoutes);
 
 // Start the server and listen on the specified port
 app.listen(port, () => {
