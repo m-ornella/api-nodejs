@@ -17,9 +17,11 @@ app.get('/', (req, res) => {
   res.send('Hello, TypeScript + Node.js + Express!');
 });
 
+// Authors endpoints
 app.get('/auteurs', auteurRoutes);
-
+app.get('/auteurs/:id', auteurRoutes);
 app.post('/auteurs', auteurRoutes);
+app.put('/auteurs/:id', auteurRoutes);
 
 // Start the server and listen on the specified port
 app.listen(port, () => {
