@@ -5,12 +5,17 @@ class LivreController {
   async createLivre(req: Request, res: Response) {
     try {
         const { titre, annee_publication, quantite, auteur_id } = req.body; 
-        const livre = await Livre.create({ titre, annee_publication, quantite, auteur_id });
+        const livre = await Livre.create({
+            titre,
+            annee_publication,
+            quantite: quantite || 1,
+            auteur_id
+        });
         res.status(201).json(livre);
     } catch (error) {
         res.status(500).json({ error: 'Failed to create book' });
     }
-}
+  }
     async getLivres(req: Request, res: Response) {
       try {
         const livres = await Livre.findAll();
