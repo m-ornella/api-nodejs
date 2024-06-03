@@ -1,5 +1,3 @@
-// src/controllers/auteurController.ts
-
 import { Request, Response } from 'express';
 import Auteur from '../models/auteur';
 

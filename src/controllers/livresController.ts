@@ -32,17 +32,33 @@ class LivreController {
           res.status(500).json({ error: 'Failed to retrieve book' });
         }
       }
+      async getQuantiteLivreById(req: Request, res: Response) {
+        try {
+            const livreId = parseInt(req.params.id, 10);
+            const livre = await Livre.findByPk(livreId, {
+                attributes: ['quantite']
+            });
+    
+            if (livre) {
+                res.status(200).json({ quantite: livre.quantite });
+            } else {
+                res.status(404).json({ error: 'Book not found' });
+            }
+        } catch (error) {
+            res.status(500).json({ error: 'Failed to retrieve number of books available' });
+        }
+    }
     
       async updateLivre(req: Request, res: Response) {
         try {
           const livreId = parseInt(req.params.id, 10);
-          const { titre, annee_publication, quantite } = req.body;
-          const [updatedRows] = await Livre.update({ titre, annee_publication, quantite }, { where: { id: livreId } });
+          const { titre, annee_publication } = req.body;
+          const [updatedRows] = await Livre.update({ titre, annee_publication }, { where: { id: livreId } });
           if (updatedRows > 0) {
             const updatedLivre = await Livre.findByPk(livreId);
             res.status(200).json(updatedLivre);
           } else {
-            res.status(404).json({ error: 'Livre not found or update failed' });
+            res.status(404).json({ error: 'Book not found or update failed' });
           }
         } catch (error) {
           res.status(500).json({ error: 'Failed to update book' });

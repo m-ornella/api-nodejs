@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json())
 
 // Set the port number for the server
-const port = 3000;
+const port = 8000;
 
 // Define a route for the root path ('/')
 app.get('/', (req, res) => {
@@ -27,6 +27,7 @@ app.put('/auteurs/:id', auteurRoutes);
 // Books endpoints
 app.get('/livres', livreRoutes);
 app.get('/livres/:id', livreRoutes);
+app.get('/livres/:id/quantite', livreRoutes);
 app.post('/livres', livreRoutes);
 app.put('/livres/:id', livreRoutes);
 
