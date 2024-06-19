@@ -75,7 +75,7 @@ class LivreController {
           const livreId = parseInt(req.params.id, 10);
           const deletedRows = await Livre.destroy({ where: { id: livreId } });
           if (deletedRows > 0) {
-            res.status(204).end();
+            res.status(204).json({ message: 'Book successfully deleted' });
           } else {
             res.status(404).json({ error: 'Book not found or deletion failed' });
           }
