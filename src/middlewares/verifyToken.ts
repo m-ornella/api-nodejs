@@ -1,17 +1,20 @@
-// import { Request, Response, NextFunction } from 'express';
-// import InvalidApiToken from '../errors/invalidApiToken';
+import { Request, Response, NextFunction } from 'express';
 
-// export function verifyToken(req: Request, res: Response, next: NextFunction) {
-//     const expectedToken = process.env.API_TOKEN || "8f94826adab8ffebbeadb4f9e161b2dc";
-//     const apiToken = req.query.apiToken as string;
 
-//     console.log('Expected Token:', expectedToken);
-//     console.log('Received Token:', apiToken);
+interface CustomHeaders extends Headers {
+  'x-api-key'?: string;
+}
 
-//     if (!apiToken || apiToken !== expectedToken) {
-//         const error = new InvalidApiToken();
-//         return res.status(error.statusCode).json(error.errorResponse);
-//     }
 
-//     next();
-// }
+const verifyToken = (req: Request, res: Response, next: NextFunction) => {
+  const headers = req.headers as unknown as CustomHeaders; 
+  const apiKey = headers['x-api-key'];
+
+  if (!apiKey || apiKey !== '8f94826adab8ffebbeadb4f9e161b2dc') {
+    return res.status(403).json({ error: 'Unauthorized' });
+  }
+
+  next();
+};
+
+export default verifyToken;

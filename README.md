@@ -29,6 +29,10 @@ http://localhost:8000/api/livres/:id/quantite
 http://localhost:8000/api/auteurs
 http://localhost:8000/api/auteurs/:id
 
+# api key request example
+
+curl -X GET http://localhost:8000/api/auteurs -H "x-api-key: 8f94826adab8ffebbeadb4f9e161b2dc"
+
 SUIVI ENDPOINTS
 GET /livre Retourne la liste des livres avec les informations des auteurs
 

@@ -2,10 +2,9 @@
 import express, { Request, Response, Router } from 'express';
 import auteurRoutes from './routes/auteursRoutes';
 import livreRoutes from './routes/livresRoutes';
-// import { verifyToken } from './middlewares/verifyToken';
+import verifyToken from './middlewares/verifyToken';
 import Auteur from './models/auteur';
 import Livre from './models/livre';
-import sequelize from './database'; 
 
 
 Auteur.associate();
@@ -27,8 +26,8 @@ app.get('/', (req: Request, res: Response) => {
 
 
 app.use('/api', router);
-router.use('/auteurs', auteurRoutes);
-router.use('/livres', livreRoutes);
+router.use('/auteurs', verifyToken, auteurRoutes);
+router.use('/livres', verifyToken, livreRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
