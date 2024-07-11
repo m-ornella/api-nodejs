@@ -12,12 +12,6 @@ Auteur.associate();
 Livre.associate();
 
 
-sequelize.sync({ force: true }).then(() => {
-  console.log('Database & tables created!');
-}).catch((error: Error) => {
-  console.error('Error creating database & tables:', error);
-});
-
 const app = express();
 const router = Router();
 

@@ -61,8 +61,8 @@ class LivreController {
   async updateLivre(req: Request, res: Response) {
     try {
       const livreId = parseInt(req.params.id, 10);
-      const { titre, annee_publication } = req.body;
-      const [updatedRows] = await Livre.update({ titre, annee_publication }, { where: { id: livreId } });
+      const { quantite } = req.body;
+      const [updatedRows] = await Livre.update({ quantite }, { where: { id: livreId } });
       if (updatedRows > 0) {
         const updatedLivre = await Livre.findByPk(livreId);
         res.status(HttpStatus.OK).json(updatedLivre);

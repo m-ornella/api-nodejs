@@ -20,9 +20,14 @@ npx tsc
 
 http://localhost:8000/api/livres
 
+http://localhost:8000/api/livres/:id
+
+http://localhost:8000/api/livres/:id/quantite
+
 # get all authors endpoint
 
 http://localhost:8000/api/auteurs
+http://localhost:8000/api/auteurs/:id
 
 SUIVI ENDPOINTS
 GET /livre Retourne la liste des livres avec les informations des auteurs
