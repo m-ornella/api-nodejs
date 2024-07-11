@@ -7,9 +7,10 @@ class Livre extends Model {
   public titre!: string;
   public annee_publication!: string;
   public quantite!: number;
-  public auteur_id!: number;
+  public id_auteur!: number;
+  
   static associate() {
-    Livre.belongsTo(Auteur, { foreignKey: 'auteur_id' });
+    Livre.belongsToMany(Auteur, { through: 'auteur_livre', foreignKey: 'id_livre' });
 }
 }
   
@@ -32,14 +33,6 @@ Livre.init(
     quantite: { 
       type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    auteur_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-          model: Auteur,
-          key: 'id',
-      },
     },
   },
   {

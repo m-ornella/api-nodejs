@@ -16,6 +16,14 @@ npm run dev
 
 npx tsc
 
+# get all books endpoint
+
+http://localhost:8000/api/livres
+
+# get all authors endpoint
+
+http://localhost:8000/api/auteurs
+
 SUIVI ENDPOINTS
 GET /livre Retourne la liste des livres avec les informations des auteurs
 

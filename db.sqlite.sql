@@ -38,3 +38,6 @@ CREATE TABLE IF NOT EXISTS "emprunt" (
 	FOREIGN KEY("id_livre") REFERENCES "livres"("id")
 );
 COMMIT;
+
+
+SELECT * FROM auteurs;

@@ -1,12 +1,17 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../database'; 
+import Livre from './livre';
 
 class Auteur extends Model {
     public id!: number;
-    public name!: string;
+    public nom!: string;
     public prenom!: string;
     public annee_naissance!: number;
     public annee_mort?: number;
+
+    static associate() {
+      Auteur.belongsToMany(Livre, { through: 'auteur_livre', foreignKey: 'id_auteur' });
+  }
 }
   
 Auteur.init(
@@ -16,7 +21,7 @@ Auteur.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    nom: {
       type: DataTypes.STRING,
       allowNull: false,
     },

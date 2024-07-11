@@ -4,8 +4,8 @@ import Auteur from '../models/auteur';
 class AuteurController {
   async createAuteur(req: Request, res: Response) {
     try {
-      const { name, prenom, annee_naissance, annee_mort } = req.body;
-      const auteur = await Auteur.create({ name, prenom, annee_naissance, annee_mort });
+      const { nom, prenom, annee_naissance, annee_mort } = req.body;
+      const auteur = await Auteur.create({ nom, prenom, annee_naissance, annee_mort });
       res.status(201).json(auteur);
     } catch (error) {
       res.status(500).json({ error: 'Failed to create author' });
@@ -38,8 +38,8 @@ class AuteurController {
   async updateAuteur(req: Request, res: Response) {
     try {
       const auteurId = parseInt(req.params.id, 10);
-      const { name, prenom, annee_naissance, annee_mort } = req.body;
-      const [updatedRows] = await Auteur.update({ name, prenom, annee_naissance, annee_mort }, { where: { id: auteurId } });
+      const { nom, prenom, annee_naissance, annee_mort } = req.body;
+      const [updatedRows] = await Auteur.update({ nom, prenom, annee_naissance, annee_mort }, { where: { id: auteurId } });
       if (updatedRows > 0) {
         const updatedAuteur = await Auteur.findByPk(auteurId);
         res.status(200).json(updatedAuteur);
