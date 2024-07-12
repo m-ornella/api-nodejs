@@ -37,7 +37,13 @@ class LivreController {
   async getLivreById(req: Request, res: Response) {
     try {
       const livreId = parseInt(req.params.id, 10);
-      const livre = await Livre.findByPk(livreId);
+      const livre = await Livre.findByPk(livreId, { 
+        include: {
+          model: Auteur,
+          as: 'auteur',
+          through: { attributes: [] }
+        },
+      });
       if (livre) {
         res.status(HttpStatus.OK).json(livre);
       } else {
