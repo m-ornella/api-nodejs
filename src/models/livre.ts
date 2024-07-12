@@ -10,7 +10,7 @@ class Livre extends Model {
   public id_auteur!: number;
   
   static associate() {
-    Livre.belongsToMany(Auteur, { through: 'auteur_livre', foreignKey: 'id_livre' });
+    Livre.belongsToMany(Auteur, { through: 'auteur_livre', foreignKey: 'id_livre', as: 'auteur' });
 }
 }
   

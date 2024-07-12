@@ -5,6 +5,7 @@ import livreRoutes from './routes/livresRoutes';
 import verifyToken from './middlewares/verifyToken';
 import Auteur from './models/auteur';
 import Livre from './models/livre';
+import AuteurLivre from './models/auteur_livre';
 
 
 Auteur.associate();

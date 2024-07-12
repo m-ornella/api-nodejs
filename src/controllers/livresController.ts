@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import Livre from '../models/livre';
 import HttpStatus from 'http-status-codes';
+import Auteur from '../models/auteur';
 
 class LivreController {
   async createLivre(req: Request, res: Response) {
@@ -20,7 +21,13 @@ class LivreController {
 
   async getLivres(req: Request, res: Response) {
     try {
-      const livres = await Livre.findAll();
+      const livres = await Livre.findAll({ 
+        include: {
+          model: Auteur,
+          as: 'auteur',
+          through: { attributes: [] }
+        },
+      });
       res.status(HttpStatus.OK).json(livres);
     } catch (error) {
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: 'Failed to retrieve books' });

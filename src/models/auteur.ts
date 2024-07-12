@@ -10,7 +10,7 @@ class Auteur extends Model {
     public annee_mort?: number;
 
     static associate() {
-      Auteur.belongsToMany(Livre, { through: 'auteur_livre', foreignKey: 'id_auteur' });
+      Auteur.belongsToMany(Livre, { through: 'auteur_livre', foreignKey: 'id_auteur', as: 'livre' });
   }
 }
   
