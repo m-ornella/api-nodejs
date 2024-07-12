@@ -23,7 +23,6 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Hello, TypeScript + Node.js + Express!!!!');
 });
 
-// router.use(verifyToken);
 
 
 app.use('/api', router);

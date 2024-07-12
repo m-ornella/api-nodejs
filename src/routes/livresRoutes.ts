@@ -1,12 +1,10 @@
 import express from 'express';
 import LivreController from '../controllers/livresController';
-// import { verifyToken } from '../middlewares/verifyToken';
 
 
 const router = express.Router();
 const livreController = new LivreController();
 
-// router.use(verifyToken);
 
 router.post('/', livreController.createLivre);
 router.get('/', livreController.getLivres);
