@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Auteur from '../models/auteur';
+import Livre from '../models/livre';
 
 class AuteurController {
   async createAuteur(req: Request, res: Response) {
@@ -14,7 +15,13 @@ class AuteurController {
 
   async getAuteurs(req: Request, res: Response) {
     try {
-      const auteurs = await Auteur.findAll();
+      const auteurs = await Auteur.findAll({ 
+        include: {
+          model: Livre,
+          as: 'livre',
+          through: { attributes: [] }
+        },
+      });
       res.status(200).json(auteurs);
     } catch (error) {
       res.status(500).json({ error: 'Failed to retrieve authors' });
