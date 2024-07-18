@@ -8,8 +8,7 @@ import rechercheRoutes from './routes/rechercheRoutes';
 import verifyToken from './middlewares/verifyToken';
 import Auteur from './models/auteur';
 import Livre from './models/livre';
-import AuteurLivre from './models/auteur_livre';
-import Emprunt from './models/emprunt';
+
 
 
 Auteur.associate();
@@ -30,9 +29,9 @@ app.get('/', (req: Request, res: Response) => {
 
 
 app.use('/api', router);
-router.use('/auteurs', verifyToken, auteurRoutes);
-router.use('/livres', verifyToken, livreRoutes);
-router.use('/emprunt', verifyToken, empruntRoutes);
+router.use('/auteurs', verifyToken,  auteurRoutes);
+router.use('/livres', verifyToken,  livreRoutes);
+router.use('/emprunt', verifyToken,  empruntRoutes);
 router.use('/recherche', verifyToken, rechercheRoutes);
 
 app.listen(port, () => {
